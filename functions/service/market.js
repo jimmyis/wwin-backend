@@ -353,6 +353,7 @@ const filter = async (filter) => {
           id: each.id,
           name: each.name,
           owner: each.owner,
+
           price: each.price,
           image: nftsArray[0].image,
           currency: nftsArray[0].currency,

@@ -15,15 +15,15 @@ const collections = db.collection("collection_list");
 const collection = db.collection("collections");
 const transaction = db.collection("transactions");
 
+
 // TEST - MAIN;
 const marketPlaceContractAddress = "0x84cad6549B3B97748DB6802F4AA0c6F41Dd4d408";
 // TEST-NET;
 // const marketPlaceContractAddress = "0x8efB2A4C9Da79bC17e7bc47F382Fe538e5b5202A";
 
-// for TEST NET >>>>>
 const baseQrURL = WWINCreature.baseQrURL;
 const baseTokenURI = WWINCreature.baseTokenURI;
-// >>>>>
+
 
 const createCollection = async (data) => {
   try {
@@ -51,7 +51,23 @@ const createCollection = async (data) => {
     );
     await Promise.all([contract.deployed()]);
     console.log(" - Deployed");
+      ],
+    });
+    console.log("- Verified contract successful");
+  } catch (error) {
+    console.log("Verify error!!");
+  }
+}
 
+const mintNFTto = async (data) => {
+
+}
+
+
+const createCollection = async (data) => {
+  try {
+    const { contract } = await deployNFTCollectionContract(data)
+    verifyNFTCollectionContract(data).then().catch()
     const contractAddress = contract.address;
     console.log(`- Deployed contract address: ${contractAddress}`);
     await collection.doc(`${contractAddress}`).set({

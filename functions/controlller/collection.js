@@ -22,6 +22,7 @@ routerCollection.get("/collection/get/ownerNFT", async (req, res) => {
   const items = db.collection("collection_list");
   const item = await items
       .where("collection_id", "==", NFTAddress)
+      .where("owner", "==", ownerAddress)
       .where("tonkenId", "==", parseInt(tokenId))
       .get();
   // console.log(item.data());
@@ -97,7 +98,6 @@ routerCollection.get("/collection/findOne/:collection_id", async (req, res) => {
         console.log("the missing link is : ", eachN);
       }
     }
-
     const collectionData = {
       id: collectionId,
       name: collection.data().name,

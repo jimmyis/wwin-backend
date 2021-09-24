@@ -97,6 +97,7 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscans
     // Obtain one at https://bscscan.com/
+
     apiKey: "PPSEVHETR6WQR6Y6M7J1718S9XSX27MBHC",
   },
 };
