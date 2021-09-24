@@ -83,21 +83,21 @@ module.exports = {
       url: "https://data-seed-prebsc-2-s1.binance.org:8545/",
       allowUnlimitedContractSize: true,
       accounts: [
-        // "079cb8c1a65af6cb7cfcc2f6b7013aa778b23b58f3ed6743ad0da1a34a934abe",
-        "d7fab702f410bc1de9fed17c43a0537b4309a7d639e6da00f6a0255ae451a8ea",
+        "8dfb5ede9e87cdf1d051cd355474106ea3e0e0294e4944f0ecc675a7b0b756dd",
       ],
     },
     bsc_mainnet: {
       url: "https://bsc-dataseed.binance.org/",
       allowUnlimitedContractSize: true,
       accounts: [
-        "d7fab702f410bc1de9fed17c43a0537b4309a7d639e6da00f6a0255ae451a8ea",
+        "80d38bba18db73bf9f0a8cc8814ce41dc6405c1b9483132cb93e5492ea9139d1",
       ],
     },
   },
   etherscan: {
     // Your API key for Etherscans
     // Obtain one at https://bscscan.com/
-    apiKey: "TD9BM1XTMF93GWWZFNMYBB42VGVNA57YRT",
+
+    apiKey: "PPSEVHETR6WQR6Y6M7J1718S9XSX27MBHC",
   },
 };

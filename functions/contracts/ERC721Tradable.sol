@@ -80,10 +80,11 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, NativeMetaTr
         baseQrURL = _url;
     }
 
+
     function setDescription(string memory _description) public onlyOwner {
         description = _description;
     }
-
+    
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
         return string(abi.encodePacked(baseTokenURI, Strings.toString(_tokenId)));
     }

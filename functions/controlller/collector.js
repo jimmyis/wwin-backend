@@ -64,6 +64,11 @@ router.get("/user/findOne/:id", async (req, res) => {
       profile_picture: data.profile_picture,
       bio: data.bio,
       role: data.role,
+      instagram: data.instagram,
+      twitter: data.twitter,
+      telegram: data.telegram,
+      email: data.email,
+      facebook: data.facebook,
       collectibles: data.collectibles.length,
       favorites: data.favorites.length,
       followers: data.followers.length,
@@ -108,6 +113,7 @@ router.put("/user/update/:id", async (req, res) => {
     let file = {};
     console.log(fileUploaded);
     if (fileUploaded == false) {
+      console.log(formData);
       const collectors = db.collection("users").doc(id.toString());
       await collectors.set(formData, {merge: true});
       res.send({id: id, data: formData});
@@ -153,7 +159,7 @@ router.post("/user/create", async (req, res) => {
   });
 
   busboy.on("finish", async () => {
-    const lowWallet =formData.wallet;
+    const lowWallet = formData.wallet;
     console.log(lowWallet);
     if (fileUploaded == true) {
       const file = await util.addFile(fileField, tempPath);

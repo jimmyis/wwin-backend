@@ -14,7 +14,7 @@ const collectionListService = require("../service/collection_list");
 const db = util.db;
 
 routerCollection.get("/collection/get/ownerNFT", async (req, res) => {
-  const ownerAddress = req.query.ownerAddress;
+  console.log("/collection/get/ownerNFT");
   const NFTAddress = req.query.NFTAddress;
   const tokenId = req.query.tokenId;
   const list = [];
@@ -43,20 +43,15 @@ routerCollection.get("/collection/findOne/:collection_id", async (req, res) => {
   console.log(method, " : handleCollections");
   const collectionId = req.params.collection_id;
   const itemList = [];
+  const numberPush = [];
   const items = db.collection("collection_list");
-  const item = await items
-      .where("tokenAddress", "==", collectionId)
-      .where("excludes", "==", false)
-      .where("onSell", "==", true)
-      .get();
+  const item = await items.where("collection_id", "==", collectionId).get();
   const collections = db.collection("collections").doc(collectionId);
   const collection = await collections.get();
-  console.log(collection.data());
   const itemListVacan = [];
   const sellListVacan = [];
-
+  const thundred = Array.from({length: 300}, (_, i) => i + 1);
   if (collection.data()) {
-    console.log(collection.data().name);
     item.forEach((doc) => {
       const date = new Date(doc.data().create_date);
       const data = {
@@ -65,7 +60,7 @@ routerCollection.get("/collection/findOne/:collection_id", async (req, res) => {
         name: doc.data().name,
         currency: doc.data().currency,
         image: doc.data().image,
-        description: doc.data().description.toString(),
+        description: doc.data(),
         price: parseFloat(doc.data().price),
         owner: doc.data().owner,
         status: doc.data().status,
@@ -74,27 +69,50 @@ routerCollection.get("/collection/findOne/:collection_id", async (req, res) => {
         properties: doc.data().properties,
         isClaim: doc.data().isClaim,
         tonkenId: doc.data().tonkenId,
+        NFTProperty: doc.data().NFTProperty,
       };
-      if (doc.data().isClaim == false) {
+      if (
+        doc.data().isClaim == false &&
+        doc.data().onSell == true &&
+        doc.data().name
+      ) {
         itemListVacan.push(data);
-        sellListVacan.push(data.tonkenId);
+        if (doc.data().excludes == false && doc.data().tonkenId != null) {
+          sellListVacan.push(data.tonkenId);
+        }
       }
-      itemList.push(data);
+
+      console.log(doc.data().tonkenId, doc.data().name, doc.data().isClaim);
+      if (doc.data().excludes == false && doc.data().name) {
+        console.log();
+
+        numberPush.push(data.tonkenId);
+        itemList.push(data);
+      }
     });
-    console.log(itemList);
+
+    for (const eachN of thundred) {
+      if (numberPush.includes(eachN)) {
+        console.log("the links is : ", eachN);
+      } else {
+        console.log("the missing link is : ", eachN);
+      }
+    }
     const collectionData = {
       id: collectionId,
       name: collection.data().name,
       owner: collection.data().owner,
       description: collection.data().description,
-      image: itemList[0].image,
+      image: collection.data().image,
       totalSupply: itemList.length,
       available: itemListVacan.length,
-      properties: itemList[0].properties,
-      currency: itemList[0].currency,
-      price: itemList[0].price,
+      properties: collection.data().properties,
+      currency: collection.data().currency,
+      price: collection.data().price,
+      NFTProperty: collection.data().NFTProperty,
       tokenIds: sellListVacan,
     };
+    console.log(sellListVacan.length);
     res.send(collectionData);
   } else {
     res.status(404).send("not found" + req.params.collection_id);
@@ -501,8 +519,14 @@ routerCollection.put("/collections/update/onsell", async (req, res) => {
     itemList.push(data);
   });
 
+  const statusList = [];
   for (const each of itemList) {
-    if (onsell.includes(parseInt(each.tonkenId.tonkenId))) {
+    console.log(
+        "TOKEN ID : ",
+        each.tonkenId.serialNmuber,
+        onsell.includes(each.tonkenId.tonkenId),
+    );
+    if (onsell.includes(each.tonkenId.serialNmuber)) {
       // console.log("EACH NFT", each.tonkenId);
       console.log(price);
       const priceNFT = ethers.utils.parseUnits(price.toString(), 18).toString();
@@ -515,10 +539,15 @@ routerCollection.put("/collections/update/onsell", async (req, res) => {
         collection_id: address,
         tonkenId: each.tonkenId.tonkenId,
       };
-      await contractService.sellNFTFromApi(obj);
+      const status = await contractService.sellNFTFromApi(obj);
+      statusList.push(status);
     }
   }
-  res.send({status: true});
+  if (statusList.includes(false)) {
+    res.send({status: false});
+  } else {
+    res.send({status: true});
+  }
 });
 
 routerCollection.get("/collections/get/sell/list/", async (req, res) => {

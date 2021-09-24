@@ -319,6 +319,7 @@ const filter = async (filter) => {
         name: doc.data().name,
         owner: doc.data().owner,
         description: doc.data().description,
+        price: doc.data().price,
       };
       itemList.push(data);
     });
@@ -326,7 +327,7 @@ const filter = async (filter) => {
     for (const each of itemList) {
       const nftsArray = [];
       const itemNft = db.collection("collection_list");
-      const nfts = await itemNft.where("tokenAddress", "==", each.id).get();
+      const nfts = await itemNft.where("collection_id", "==", each.id).get();
       nfts.forEach((doc) => {
         const date = new Date(doc.data().create_date);
         const data = {
@@ -352,11 +353,13 @@ const filter = async (filter) => {
           id: each.id,
           name: each.name,
           owner: each.owner,
-          price: nftsArray[0].price,
+
+          price: each.price,
           image: nftsArray[0].image,
           currency: nftsArray[0].currency,
           create_date: nftsArray[0].create_date,
         };
+        console.log(each);
         // const count = 0;
         collections.push(collectionData);
       }

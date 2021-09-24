@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-const { ethers } = require("ethers");
+const {ethers} = require("ethers");
 const hre = require("hardhat");
 const util = require("../util/util");
 
@@ -15,64 +15,42 @@ const collections = db.collection("collection_list");
 const collection = db.collection("collections");
 const transaction = db.collection("transactions");
 
-const marketPlaceContractAddress = "0x84cad6549B3B97748DB6802F4AA0c6F41Dd4d408";
 
-// for TEST NET >>>>>
+// TEST - MAIN;
+const marketPlaceContractAddress = "0x84cad6549B3B97748DB6802F4AA0c6F41Dd4d408";
+// TEST-NET;
+// const marketPlaceContractAddress = "0x8efB2A4C9Da79bC17e7bc47F382Fe538e5b5202A";
+
 const baseQrURL = WWINCreature.baseQrURL;
 const baseTokenURI = WWINCreature.baseTokenURI;
-// >>>>>
-
-const logger = (event, stage, payload) => {
-  console.log(event, stage, payload)
-}
 
 
-const deployNFTCollectionContract = async (data) => {
+const createCollection = async (data) => {
   try {
-    if (!data) { throw { message: "Invalid Input Data" } }
-    const { name: NFTname, description: NFTdescription, collelction_id: NFTcollectionID, image: NFTimage } = data
-    logger("DEPLOY_NFT_COLLECTION_CONTRACT", "BEGIN", { result, contract });
-    // console.log("Start createCollection ...");
-    // console.log("- data: ", JSON.stringify(data));
-    const [ owner ] = await hre.ethers.getSigners();
-    const mintToAddress = owner.address;
+    console.log("Start createCollection ...");
+    console.log("- data: ", JSON.stringify(data));
+    const [wWinOwnerAddress] = await hre.ethers.getSigners();
+    const mintToAddress = wWinOwnerAddress.address;
+    // mintToAddress = "";
+    console.log("- Initial Contract");
     const creatureFactory = await hre.ethers.getContractFactory(
         (abi = creatureContract["abi"]),
         (bytecode = creatureContract["bytecode"]),
-        (signer = owner),
+        (signer = wWinOwnerAddress),
     );
-  
+
     // const contractAddress = "0x7d7593f5CB0f67a3Fa14Daf063E93d3D4aB3076e";
     // const contract = creatureFactory.attach(contractAddress);
-    // console.log(" - Inital Deploy");
+    console.log(" - Inital Deploy");
     const contract = await creatureFactory.deploy(
-        NFTname,
-        nftSymbol,
-        NFTdescription,
-        NFTcollectionID,
-        NFTimage,
-    );
-
-    const result = await Promise.all([contract.deployed()]);
-    logger("DEPLOY_NFT_COLLECTION_CONTRACT", "RESULT", { result, contract });
-    return { contract, result }
-
-  } catch (error) {
-    logger("DEPLOY_NFT_COLLECTION_CONTRACT", "ERROR", { result, contract });
-    throw error
-  }
-}
-
-const verifyNFTCollectionContract = (data) => {
-  try {
-    await hre.run("verify:verify", {
-      address: contractAddress,
-      constructorArguments: [
         data.name,
         nftSymbol,
         data.description,
         data.collection_id,
         data.image,
+    );
+    await Promise.all([contract.deployed()]);
+    console.log(" - Deployed");
       ],
     });
     console.log("- Verified contract successful");
@@ -90,7 +68,6 @@ const createCollection = async (data) => {
   try {
     const { contract } = await deployNFTCollectionContract(data)
     verifyNFTCollectionContract(data).then().catch()
-
     const contractAddress = contract.address;
     console.log(`- Deployed contract address: ${contractAddress}`);
     await collection.doc(`${contractAddress}`).set({
@@ -104,7 +81,23 @@ const createCollection = async (data) => {
     });
     console.log("- finished create collection to DB");
 
-    
+    try {
+      await hre.run("verify:verify", {
+        address: contractAddress,
+        constructorArguments: [
+          data.name,
+          nftSymbol,
+          data.description,
+          data.collection_id,
+          data.image,
+        ],
+      });
+      console.log("- Verified contract successful");
+    } catch (error) {
+      console.log("Verify error!!");
+    }
+
+    console.log("- Verified contract");
 
     // Mint with total supply
 
@@ -115,7 +108,7 @@ const createCollection = async (data) => {
 
     const totalSupply = data.totalSupply;
     let tokenAddress = "";
-    // TEST-NET
+    // TEST-NET;
     // if (data.currency == "busd") {
     //   tokenAddress = "0x78867bbeef44f2326bf8ddd1941a4439382ef2a7";
     // } else if (data.currency == "bath") {
@@ -482,7 +475,7 @@ const sellNFTFromApi = async (obj) => {
   };
   let NFTPass;
   let approve;
-  const princeString = data.price;
+  const princeString = obj.price;
   const price = ethers.utils.parseUnits(princeString.toString(), 18);
   try {
     approve = await approveOwner(obj.collection_id, obj.tonkenId);
@@ -503,14 +496,17 @@ const sellNFTFromApi = async (obj) => {
 
       const metadata = await contract.sellItem(inside, options);
       metadata.wait();
+      console.log("META DATA : ", metadata);
       const collectors = db
           .collection("collection_list")
-          .doc(obj.collection_id.toString());
+          .doc(`${obj.collection_id.toString()}-${obj.tonkenId}`);
       await collectors.set(updateObj, {merge: true});
       return true;
     } catch (err) {
       console.log(err);
     }
+  } else {
+    return false;
   }
 };
 
@@ -537,7 +533,7 @@ const getTransctions = async (ownerAddress, nftAddress, postId, mode) => {
         owner: ownerAddress,
         collection_id: nftAddress,
         isClaim: true,
-        excludes: true,
+        excludes: false,
         onSell: false,
       },
       {merge: true},
