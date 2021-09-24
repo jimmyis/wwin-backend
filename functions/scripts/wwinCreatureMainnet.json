@@ -1,0 +1,25 @@
+{
+    "name": "Poramesuan Garuda “Prosperity” Gold Model",
+    "baseTokenURI": "https://us-central1-wwin-mainnet.cloudfunctions.net/handleCollections/api/collection/",
+    "baseQrURL": "https://www.winwinwintoken.com/QR/GarudB/Gold1/",
+    "maxSupply": 3000,
+    "description": "Fire Element | Part of the WWIN Element Collection Blessed by Luang Por Wara Punyawaro, Head Monk of Wat Pho Thong Video Link of https://www.youtube.com/watch?v=z_rVlasNjTs Full Version https://youtu.be/sxDUqaLAtfs It’s said that the God Garuda is the bone of the Sun. Garuda got his power by fulfilling his destiny by bringing Amrit Water (Elixir of Life) to help his mother atone. After a long and tiresome battle, Vishnu was impressed with Garuda’s selfless act and that he did not drink Amrit water to become invincible. Vishnu blessed him with immortality and Garuda becomes undefeatable and invincible. Garuda represents the act of being respectful to parents. Garuda’s Virtue of the Buddha includes * Protection and Abundance * Wealth * Getting Promoted to higher rank * Ward off Danger WWIN will use some of the proceeds from sales: * Buying back and burning WWIN. * Education scholarships for orphans and kids from low income families from the 12 charities and 17 different ethnic groups under the care of Luang Por Wara of Wat Pho Thong temple. * The purchase PPE and other equipment for medical workers, and food, medicine, ventilators, and other necessities for people with Covid-19. * To renovate the Garuda Pavilion in Wat Pho Thong Temple.",
+    "currency": "BNB",
+    "image": "QmSLvhYACXRjRspbHewLxN9122bgiGLnrrghtXSuRJCq2k",
+    "price": 2,
+    "properties": [
+        {
+            "label": "Gold",
+            "value": "30% has this trait"
+        },
+        {
+            "label": "Halo Power",
+            "value": "99"
+        },
+        {
+            "label": "Flying Effect",
+            "value": "99"
+        }
+      ],
+      "descriptionHTML": "<h4 class='font-normal text-lg mt-3'>Fire Element | Part of the WWIN Element Collection</h4><div class='text-sm text-black-400'><p class='text-sm'>Blessed by Luang Por Wara Punyawaro, Head Monk of Wat Pho Thong Video Link of <a class='text-primary-500' href='https://www.youtube.com/watch?v=z_rVlasNjTs' target='_blank'>https://www.youtube.com/watch?v=z_rVlasNjTs</a> Full Version <a class='text-primary-500' href='https://youtu.be/sxDUqaLAtfs' target='_blank'>https://youtu.be/sxDUqaLAtfs</a></p><p class='text-sm mt-4'>It’s said that the God Garuda is the bone of the Sun. Garuda got his power by fulfilling his destiny by bringing Amrit Water (Elixir of Life) to help his mother atone. After a long and tiresome battle, Vishnu was impressed with Garuda’s selfless act and that he did not drink Amrit water to become invincible. Vishnu blessed him with immortality and Garuda becomes undefeatable and invincible.</p><p class='text-sm mt-4'>Garuda represents the act of being respectful to parents.</p><p class='text-sm '>Garuda’s Virtue of the Buddha includes</p><ul class='list-disc pl-6'><li>Protection and Abundance</li><li>Wealth</li><li>Getting Promoted to higher rank</li><li>Ward off Danger</li></ul><p class='text-sm mt-4'>WWIN will use some of the proceeds from sales:</p><ul class='list-disc pl-6'><li>Buying back and burning WWIN.</li><li>Education scholarships for orphans and kids from low income families from the 12 charities and 17 different ethnic groups under the care of Luang Por Wara of Wat Pho Thong temple.</li><li>The purchase PPE and other equipment for medical workers, and food, medicine, ventilators, and other necessities for people with Covid-19.</li><li>To renovate the Garuda Pavilion in Wat Pho Thong Temple.</li></ul></div>"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wwin-mainnet",
+  "private_key_id": "79eaaa122872b544d74ca15c81eb675adb75ef44",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtgGPHrG4dP7R8\nah3Qt+dgpGK+sXSh77fMBLM0pM8bAbQfEPT6l2VGbRXxluzWZwzFpMCoJ/wUqLn7\n/P3lnBg6xt5LBESM31aPtGEE6M0iB/KyvNKXAocstAK8fwtcRYiJ2gIo+Nkt5evK\nQvLNjpaz3BdVxaYHv1WGK67Kv7S++m4hULvFt+wX4Gkki/I5/YklU9H2XiGW9Da4\nHaT6LW/oRWH5j+vr6/gD9hwxOBZq4eT78ZP/UsZm39DZDa4Kb/NvQb7r64mLAGaD\nY6+xG8HguzgGOXBKguHi6ICjUf4wm6KQKixZlP9XBBQC//8O82gdIec2vavpxU9y\na7lq6H1fAgMBAAECggEAUC5obmuqi8vYDjNASifjPw9ZLwV1gCz3hMqbQvXzXGjC\nJCVDAdgbjpt1K6vzEfaXuXM1McEgxy9enCzD7Wvg6rDjJEn5oBzKtSjIOWuY+WQw\n7hdDP1SEwc0DAre3uVHNEt/0ZZjzTTnXaSbdbM+7p61L/3CTFTuAO7xOUBaeYi85\nCR8EJMC5+5OZZ1EcBZxngrVTZU46wCB8IlEz/QtxqKLn/GUMbRyWzfHvelg3/XoK\nombcfrVRr2RRkLlTSHv036eC12H7KoB3QrToNPzoe2CvwioVaM2oehRytdq9l3Ld\nKIlUfuzwFc00Hv+qDjSoBh82OAiwv648HPw7b2ZlqQKBgQDWbeiRi2+pIVIOtVAa\njtYo/KdponPNc5eBpLtiqjGxI+m0Vm3Aa57gIMICFpCb3H41bp2tF1Rpp86QK9Pq\nnarGrBLiGiGXBYxUdptilY4TgCFNsBDqybIBoV80iFoU5PbkrtPmCXzZdiCddkWf\nhgDi7zjOpTHx1/Cj9EFI5KFR/QKBgQDPIz25DRAJuGzshO90YTdor7yk00NxTfo+\nBjqbHKxYXVn9sCQ73SJvNJpfkGzQ1UnYeaVtS7NVt2JSFqD+TEbiKgm1s80Nn9Hc\nc4vQ6Gxog+fhPAh02CVy9ZVCYef7q2f67/93rnzkk65kAwFZHuE1Jzj+ipLC2UAC\nczMzgl2tiwKBgQCYQB/Cv9N/rjX6VYjT4plzLrmbyooY1bs8hP+79YYk9Y/pyPhS\niNec4gV+wBDbafp+69Su4wK/pjOHsGbejiaEvAcIXW9+MKVMD48St4fSlsaOx7Wr\nT5zBhZf4z9vOPCiFhRDVo+Tu7u4Hf8O9mcMlXp/iMe89fYrSjwqPvC5C7QKBgGfp\naPRlXi9SKqp4gdujTXWh+4PAS+wST0BARbQ8rSTjJ9sBOxwg8j5RaEQaoswcw5/q\nXpe2yy9sANHncjpAL6sTpa1Wlr6H93KdMH3Lq16/FVtDj4Z2TEsgchFMJmF1eoND\nVKhIi3TrtSeM7mcz+4x7sbbX84n2DItuGTh05OPDAoGAJV/WXp1OJTpha09w3KLi\n2X0gk8nuxbaJ0ZXO7begOAEJlFjf/+CvE7A+V1T/gRuFaIkx6gV6qJG/1+YxyuiY\nCifTZGGQg7YKQ1iHKvHTXc1MaHSYTqpw6F5JoJyJSS3yStNSHkrKz00EezBZokOR\n5FidQwy89k3T6xZ/AdqXgnQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "email-listing@wwin-mainnet.iam.gserviceaccount.com",
+  "client_id": "114186094796406446784",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/email-listing%40wwin-mainnet.iam.gserviceaccount.com"
+}
